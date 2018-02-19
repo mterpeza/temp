@@ -5,35 +5,51 @@ import java.util.Map;
 
 public class Main {
 
-    //private final static fileInput indata = new fileInput("stuff.csv");
+    private final static fileInput stuffData = new fileInput("stuff.csv");
     private final static fileInput indata = new fileInput("places.csv");
-    private final static Map<String, Integer> map = new HashMap<String, Integer>();
+    private final static Map<String, locationStuff> map = new HashMap();
+    private final static fileOutput output = new fileOutput("output.txt");
+    public static void main(String[] args) {
 
-    public static void main(String[] args){
         String line;
         String[] words;
         Object wordFound;
 
-        while ((line = indata.fileReadLine()) != null){
+        // cities File
+        while ((line = indata.fileReadLine()) != null) {
             words = line.split(",");
-            for (String s:words) {
-                wordFound = map.get(s);
-                if (wordFound == null){
-                    map.put(s, new Integer(1));
-                } else {
-                    map.put(s, (int)map.get(s) + 1);
-                }
+
+        // System.out.println(line);
+            wordFound = map.get(words[0]);
+            if (wordFound == null) {
+                map.put(words[0], new locationStuff(1));
+            } else {
+                locationStuff locationStuff = ((locationStuff) map.get(words[0]));
+                locationStuff.incrementCity();
+                map.put(words[0], locationStuff);
+
             }
 
-            for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+
+        // Stuff file
+        while ((line = stuffData.fileReadLine()) != null) {
+            words = line.split(",");
+            wordFound = map.get(words[0]);
+            if (wordFound == null) {
+                map.put(words[0], new locationStuff(1));
+            } else {
+
+                locationStuff locationStuff = ((locationStuff) map.get(words[0]));
+                locationStuff.incrementStuff();
+                map.put(words[0], locationStuff);
             }
         }
 
-        public static void printOut( p)  {
-            System.out.println(p.getName() + "Test" + p.talk());
-            outFile.fileWrite(p.getName() + "|" + p.talk());
-
+        System.out.println("Country                 Cities                  Stuff");
+        System.out.println("========                =======                 ========\n");
+        for (Map.Entry<String, locationStuff> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + "     " + entry.getValue());
         }
 
     }

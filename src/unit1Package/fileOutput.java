@@ -1,4 +1,5 @@
 package unit1Package;
+
 import java.io.*;
 
 //This class is used to write output to a file
@@ -10,7 +11,7 @@ public class fileOutput {
     public fileOutput(String filename) {
         this.fileName = filename;
         try {
-            //FileOutputStream class is used to direct output to a file
+        //FileOutputStream class is used to direct output to a file
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName)));
         }
         catch (FileNotFoundException e){
@@ -19,7 +20,7 @@ public class fileOutput {
     }
 
     public void fileWrite(String line) {
-        //Writes output to a file line by line
+    //Writes output to a file line by line
         try{
             out.write(line+"\n");
         }
@@ -29,7 +30,7 @@ public class fileOutput {
     }
 
     public void fileClose(){
-        //To safely close the file
+    //To safely close the file
         if (out != null){
             try{
                 out.close();

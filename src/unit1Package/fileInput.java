@@ -8,13 +8,13 @@ import java.io.IOException;
 public class fileInput {
     //BufferedReader to read from file
     private BufferedReader in = null;
-    private  String fileName;
-    //constructor for fileInput class(Conventionally class name should start with a capital)
+    private String fileName;
+//constructor for fileInput class(Conventionally class name should start with a capital)
 
     public fileInput(String fileName) {
         this.fileName = fileName;
         try {
-            //FileInputReader used to read from file
+//FileInputReader used to read from file
             in = new BufferedReader(new FileReader(fileName));
         } catch (FileNotFoundException e){
             System.out.println("Error, cannot open file: " + fileName + " " + e);
@@ -22,7 +22,7 @@ public class fileInput {
     }
 
     public void fileRead() {
-        //This method reads input from file and prints on to the console
+//This method reads input from file and prints on to the console
         String line;
         try {
             while ((line = in.readLine()) != null){
@@ -34,7 +34,7 @@ public class fileInput {
     }
 
     public String fileReadLine() {
-        //This method reads input line by line and returns as a string
+//This method reads input line by line and returns as a string
         try{
             String line = in.readLine();
             return line;
@@ -45,7 +45,7 @@ public class fileInput {
     }
 
     public void fileClose(){
-        //This method is used to safely close the opened file for reading
+//This method is used to safely close the opened file for reading
         if(in != null) {
             try{
                 in.close();
