@@ -28,6 +28,6 @@ public class locationStuff {
     @Override
 
     public String toString(){
-        return String.valueOf("         " + getCity() + "                 " + getStuff());
+        return String.valueOf("" + getCity() + "                 " + getStuff());
     }
 }

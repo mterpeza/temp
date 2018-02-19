@@ -2,6 +2,9 @@ package unit1Package;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 public class Main {
 
@@ -49,8 +52,15 @@ public class Main {
         System.out.println("Country                 Cities                  Stuff");
         System.out.println("========                =======                 ========\n");
         for (Map.Entry<String, locationStuff> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + "     " + entry.getValue());
+            System.out.println(entry.getKey() + "-----" + entry.getValue());
         }
 
+        PrintWriter out = null;
+        try {
+            out = new PrintWriter(new FileWriter("output.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.close();
     }
 }
